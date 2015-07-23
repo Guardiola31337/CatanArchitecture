@@ -46,4 +46,15 @@ public class StorageModuleTest {
     assertEquals("test", storageFolders.get(1).getName());
     assertEquals("folDER", storageFolders.get(2).getName());
   }
+
+  @Test public void foldersLoadedEventHasBeenFired() throws Exception {
+    DataPort dataPort = new InMemoryDataAdapter(Collections.<FolderDTO>emptyList());
+    InMemoryEventsAdapter eventsPort = new InMemoryEventsAdapter();
+    Storage storage = new InMemoryStorage(dataPort, eventsPort);
+    StorageModule storageModule = new StorageModule(storage);
+
+    storageModule.run();
+
+    assertTrue(eventsPort.hasBeenFired(FoldersLoadedEvent.class));
+  }
 }
