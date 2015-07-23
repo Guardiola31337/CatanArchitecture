@@ -14,20 +14,11 @@
  * limitations under the License.
  */
 
-package com.pguardiola.catanarchitecture.data;
+package com.pguardiola.catanarchitecture.hexagon.domain.events;
 
-import com.pguardiola.catanarchitecture.hexagon.DataPort;
-import com.pguardiola.catanarchitecture.hexagon.FolderDTO;
-import java.util.List;
-
-public class InMemoryDataAdapter implements DataPort {
-  private List<FolderDTO> folders;
-
-  public InMemoryDataAdapter(List<FolderDTO> folders) {
-    this.folders = folders;
-  }
-
-  @Override public List<FolderDTO> obtainFolders() {
-    return folders;
+public class FoldersLoadedEvent implements Event {
+  @Override public String toString() {
+    return "Folders loaded event";
   }
 }
+

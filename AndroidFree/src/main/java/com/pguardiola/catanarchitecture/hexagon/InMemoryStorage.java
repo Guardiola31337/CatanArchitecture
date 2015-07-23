@@ -16,12 +16,25 @@
 
 package com.pguardiola.catanarchitecture.hexagon;
 
-import org.junit.Test;
+import com.pguardiola.catanarchitecture.hexagon.domain.events.FoldersLoadedEvent;
+import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+public class InMemoryStorage implements Storage {
+  private final DataPort dataPort;
+  private final EventsPort eventsPort;
+  private List<FolderDTO> folders;
 
-public class FooModuleTest {
-  @Test public void foo() throws Exception {
-    assertTrue(true);
+  public InMemoryStorage(DataPort dataPort, EventsPort eventsPort) {
+    this.eventsPort = eventsPort;
+    this.dataPort = dataPort;
+  }
+
+  @Override public void loadFolders() {
+    folders = dataPort.obtainFolders();
+    eventsPort.broadcast(new FoldersLoadedEvent());
+  }
+
+  @Override public List<FolderDTO> obtainUpdatedFolders() {
+    return folders;
   }
 }

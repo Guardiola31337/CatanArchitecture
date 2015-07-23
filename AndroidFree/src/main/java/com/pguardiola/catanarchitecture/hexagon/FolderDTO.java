@@ -14,11 +14,20 @@
  * limitations under the License.
  */
 
-package com.pguardiola.catanarchitecture.hexagon.domain.events;
+package com.pguardiola.catanarchitecture.hexagon;
 
-public class FooEvent implements Event {
-  @Override public String toString() {
-    return "Foo event";
+public class FolderDTO {
+  private String name;
+
+  public FolderDTO(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }
-

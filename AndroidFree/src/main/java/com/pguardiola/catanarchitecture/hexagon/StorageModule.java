@@ -16,19 +16,20 @@
 
 package com.pguardiola.catanarchitecture.hexagon;
 
-import com.pguardiola.catanarchitecture.hexagon.domain.events.FooEvent;
+import java.util.List;
 
-public class FooModule implements Runnable {
-  private final EventsPort eventsPort;
+public class StorageModule implements Runnable {
+  private final Storage storage;
 
-  public FooModule(DataPort dataPort, EventsPort eventsPort) {
-    this.eventsPort = eventsPort;
+  public StorageModule(Storage storage) {
+    this.storage = storage;
   }
 
   @Override public void run() {
-    eventsPort.on(FooEvent.class, new Callback<FooEvent>() {
-      @Override public void call(FooEvent event) {
-      }
-    });
+    storage.loadFolders();
+  }
+
+  public List<FolderDTO> obtainFoldersFromStorage() {
+    return storage.obtainUpdatedFolders();
   }
 }

@@ -17,14 +17,11 @@
 package com.pguardiola.catanarchitecture.data;
 
 import com.pguardiola.catanarchitecture.hexagon.DataPort;
-import com.pguardiola.catanarchitecture.hexagon.FooItem;
+import com.pguardiola.catanarchitecture.hexagon.FolderDTO;
 import java.util.List;
 
 public class MySQLDataAdapter implements DataPort {
-  @Override public List<FooItem> obtainItems() {
+  @Override public List<FolderDTO> obtainFolders() {
     return null;
-  }
-
-  @Override public void addItem(FooItem item) {
   }
 }

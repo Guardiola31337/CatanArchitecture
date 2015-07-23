@@ -16,5 +16,10 @@
 
 package com.pguardiola.catanarchitecture.hexagon;
 
-public class FooItem {
+import java.util.List;
+
+public interface Storage {
+  void loadFolders();
+
+  List<FolderDTO> obtainUpdatedFolders();
 }

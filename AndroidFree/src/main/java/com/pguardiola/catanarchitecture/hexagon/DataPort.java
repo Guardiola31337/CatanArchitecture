@@ -19,7 +19,5 @@ package com.pguardiola.catanarchitecture.hexagon;
 import java.util.List;
 
 public interface DataPort {
-  List<FooItem> obtainItems();
-
-  void addItem(FooItem item);
+  List<FolderDTO> obtainFolders();
 }
