@@ -16,6 +16,12 @@ Contributors
 
 * [Pablo Guardiola Sánchez][1]
 
+Acknowledgements
+----------------
+
+* [Guillermo Gutiérrez][2]
+* [Luis Artola][3]
+
 License
 -------
 
@@ -34,3 +40,5 @@ License
     limitations under the License.
 
 [1]: https://github.com/Guardiola31337
+[2]: https://github.com/ggalmazor
+[3]: https://twitter.com/artolamola
