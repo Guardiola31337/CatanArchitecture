@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package com.pguardiola.catanarchitecture.storage.inmemory;
+package com.pguardiola.catanarchitecture.storage;
 
 import com.pguardiola.catanarchitecture.events.EventsPort;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.Folder;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersResponse;
-import com.pguardiola.catanarchitecture.storage.StoragePort;
 import java.util.List;
 
-public class InMemoryStorageAdapter implements StoragePort {
+class InMemoryStorageAdapter implements StoragePort {
   private final EventsPort eventsPort;
   private List<Folder> folders;
 
-  public InMemoryStorageAdapter(EventsPort eventsPort, List<Folder> folders) {
+  InMemoryStorageAdapter(EventsPort eventsPort, List<Folder> folders) {
     this.eventsPort = eventsPort;
     this.folders = folders;
   }

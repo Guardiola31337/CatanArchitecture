@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package com.pguardiola.catanarchitecture.storage.inmemory;
+package com.pguardiola.catanarchitecture.storage;
 
-import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.events.EventsPort;
 import com.pguardiola.catanarchitecture.events.InMemoryEventsAdapter;
+import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.Folder;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.FoldersModule;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersCommand;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersResponse;
-import com.pguardiola.catanarchitecture.storage.StoragePort;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
