@@ -16,4 +16,14 @@ allprojects {
   repositories {
     jcenter()
   }
+
+  apply plugin: 'checkstyle'
+
+  task checkstyle(type: Checkstyle) {
+    configFile file('../checkstyle/checkstyle.xml')
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files()
+  }
 }

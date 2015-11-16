@@ -34,11 +34,11 @@ import static org.junit.Assert.assertTrue;
 public class InMemoryStorageTest {
 
   @Test public void storageWithSomeFolders() throws Exception {
-    List<Folder> folders = new ArrayList<Folder>() {{
-      add(new Folder("Foo", 5));
-      add(new Folder("test", 27));
-      add(new Folder("folDER", 4));
-    }};
+    List<Folder> folders = new ArrayList<Folder>();
+    folders.add(new Folder("Foo", 5));
+    folders.add(new Folder("test", 27));
+    folders.add(new Folder("folDER", 4));
+
     EventsPort eventsPort = new InMemoryEventsAdapter();
     StoragePort storagePort = new InMemoryStorageAdapter(eventsPort, folders);
     FoldersModule foldersModule = new FoldersModule(storagePort, eventsPort);
@@ -57,7 +57,8 @@ public class InMemoryStorageTest {
 
   @Test public void foldersLoadedEventHasBeenFired() throws Exception {
     InMemoryEventsAdapter eventsPort = new InMemoryEventsAdapter();
-    StoragePort storagePort = new InMemoryStorageAdapter(eventsPort, Collections.<Folder>emptyList());
+    StoragePort storagePort =
+        new InMemoryStorageAdapter(eventsPort, Collections.<Folder>emptyList());
     FoldersModule foldersModule = new FoldersModule(storagePort, eventsPort);
 
     foldersModule.run();

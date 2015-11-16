@@ -18,9 +18,9 @@ package com.pguardiola.catanarchitecture.storage.dropbox;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.events.EventsPort;
 import com.pguardiola.catanarchitecture.events.InMemoryEventsAdapter;
+import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.FoldersModule;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersCommand;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersResponse;
