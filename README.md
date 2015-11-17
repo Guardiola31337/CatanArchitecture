@@ -15,6 +15,7 @@ Contributors
 ------------
 
 * [Pablo Guardiola Sánchez][1]
+* [Pedro Vicente Gómez Sánchez][4]
 
 Acknowledgements
 ----------------
@@ -42,3 +43,4 @@ License
 [1]: https://github.com/Guardiola31337
 [2]: https://github.com/ggalmazor
 [3]: https://twitter.com/artolamola
+[4]: https://github.com/pedrovgs
