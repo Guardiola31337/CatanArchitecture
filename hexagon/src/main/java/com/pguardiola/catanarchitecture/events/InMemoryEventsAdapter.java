@@ -29,28 +29,37 @@ public class InMemoryEventsAdapter implements EventsPort {
   private List firedEvents = new ArrayList();
 
   @Override public <T> void on(Class<T> type, Callback<T> command) {
-    if (!subscribers.containsKey(type)) subscribers.put(type, new HashSet<Callback>());
+    if (!subscribers.containsKey(type)) {
+      subscribers.put(type, new HashSet<Callback>());
+    }
     subscribers.get(type).add(command);
   }
 
   @Override @SuppressWarnings("unchecked") public void broadcast(Object event) {
     firedEvents.add(event);
     if (subscribers.containsKey(event.getClass())) {
-      for (Callback command : subscribers.get(event.getClass()))
+      for (Callback command : subscribers.get(event.getClass())) {
         command.call(event);
+      }
     }
   }
 
   public boolean hasBeenFired(Class type) {
-    for (Object event : firedEvents)
-      if (event.getClass().equals(type)) return true;
+    for (Object event : firedEvents) {
+      if (event.getClass().equals(type)) {
+        return true;
+      }
+    }
     return false;
   }
 
   @SuppressWarnings("unchecked") public <T> List<T> eventsOf(Class<T> type) {
     List events = new ArrayList();
-    for (Object event : firedEvents)
-      if (event.getClass().equals(type)) events.add(event);
+    for (Object event : firedEvents) {
+      if (event.getClass().equals(type)) {
+        events.add(event);
+      }
+    }
     return events;
   }
 }

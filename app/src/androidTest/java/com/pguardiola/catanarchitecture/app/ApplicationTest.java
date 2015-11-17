@@ -27,15 +27,12 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-@RunWith(AndroidJUnit4.class)
-public class ApplicationTest {
+@RunWith(AndroidJUnit4.class) public class ApplicationTest {
 
-  @Rule
-  public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
-      MainActivity.class);
+  @Rule public ActivityTestRule<MainActivity> mActivityRule =
+      new ActivityTestRule<>(MainActivity.class);
 
-  @Test
-  public void foo() {
+  @Test public void foo() {
     onView(withId(R.id.app_name)).check(matches(withText("CatanArchitecture")));
   }
 }
