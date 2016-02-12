@@ -8,8 +8,8 @@ Developed By
 
 * Pablo Guardiola Sánchez - <guardiola31337@gmail.com>
 
-[![Twitter](http://pguardiola.com/images/twitter-logo.png)](https://twitter.com/Guardiola31337 "Follow me on Twitter")
-[![Linkedin](http://pguardiola.com/images/linkedin-logo.png)](https://es.linkedin.com/in/pabloguardiola "Add me to Linkedin")
+[![Twitter](https://raw.githubusercontent.com/Guardiola31337/guardiola31337.github.io/master/images/twitter-logo.png)](https://twitter.com/Guardiola31337 "Follow me on Twitter")
+[![Linkedin](https://raw.githubusercontent.com/Guardiola31337/guardiola31337.github.io/master/images/linkedin-logo.png)](https://es.linkedin.com/in/pabloguardiola "Add me to Linkedin")
 
 Contributors
 ------------
