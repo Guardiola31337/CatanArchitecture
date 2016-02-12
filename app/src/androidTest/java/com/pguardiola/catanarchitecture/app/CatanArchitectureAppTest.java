@@ -26,13 +26,14 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.core.IsNull.notNullValue;
 
-@RunWith(AndroidJUnit4.class) public class ApplicationTest {
+@RunWith(AndroidJUnit4.class) public class CatanArchitectureAppTest {
 
-  @Rule public ActivityTestRule<MainActivity> mActivityRule =
-      new ActivityTestRule<>(MainActivity.class);
+  @Rule public ActivityTestRule<Folders> mActivityRule =
+      new ActivityTestRule<>(Folders.class);
 
-  @Test public void foo() {
-    onView(withId(R.id.app_name)).check(matches(withText("CatanArchitecture")));
+  @Test public void foldersViewShouldExist() {
+    onView(withId(R.id.folders)).check(matches(notNullValue()));
   }
 }
