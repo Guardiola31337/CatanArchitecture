@@ -41,9 +41,11 @@ public class SDCardStorageAdapter implements StoragePort {
     File file = new File(rootSD);
     File list[] = file.listFiles();
 
-    for (int i = 0; i < list.length; i++) {
-      if (list[i].isDirectory() && !list[i].isHidden()) {
-        foldersName.add(list[i].getName());
+    if (list != null) {
+      for (int i = 0; i < list.length; i++) {
+        if (list[i].isDirectory() && !list[i].isHidden()) {
+          foldersName.add(list[i].getName());
+        }
       }
     }
 
