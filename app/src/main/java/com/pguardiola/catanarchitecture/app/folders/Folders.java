@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pguardiola.catanarchitecture.app;
+package com.pguardiola.catanarchitecture.app.folders;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,33 +23,40 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+import com.pguardiola.CustomItemClickListener;
 import com.pguardiola.HexAdapter;
 import com.pguardiola.SpacesItemDecoration;
-import java.util.ArrayList;
+import com.pguardiola.catanarchitecture.app.BaseApp;
+import com.pguardiola.catanarchitecture.app.R;
+import com.pguardiola.catanarchitecture.events.EventsPort;
 import java.util.List;
 
-public class Folders extends AppCompatActivity {
+public class Folders extends AppCompatActivity implements FoldersView {
 
   private static final int SPAN_COUNT = 2;
-  private RecyclerView foldersView;
+  private RecyclerView foldersRecyclerView;
   private RecyclerView.Adapter foldersAdapter;
   private GridLayoutManager layoutManager;
+  private EventsPort eventsPort;
+  private FoldersPresenter foldersPresenter;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.folders);
 
-    foldersView = (RecyclerView) findViewById(R.id.folders);
+    foldersRecyclerView = (RecyclerView) findViewById(R.id.folders);
 
-    foldersView.setHasFixedSize(true);
+    foldersRecyclerView.setHasFixedSize(true);
 
     int squareSideLengthInPixels = getResources().getDimensionPixelSize(R.dimen.square_side_length);
-    float radius = squareSideLengthInPixels / 2;
-    float adjacent = (float) (Math.sqrt(3) * radius / 2);
+    float radius = radius(squareSideLengthInPixels);
+    float adjacent = adjacent(radius);
 
     int spacingInPixels = -(Math.round(radius - adjacent));
 
-    foldersView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
+    foldersRecyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
 
     layoutManager = new GridLayoutManager(this, SPAN_COUNT, LinearLayoutManager.VERTICAL, false);
     layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -58,35 +65,16 @@ public class Folders extends AppCompatActivity {
       }
     });
 
-    foldersView.setLayoutManager(layoutManager);
+    foldersRecyclerView.setLayoutManager(layoutManager);
 
-    List<String> folders = new ArrayList<String>() {
-      {
-        add("Foo");
-        add("test");
-        add("folDER");
-        add("Foo");
-        add("test");
-        add("folDER");
-        add("Foo");
-        add("test");
-        add("folDER");
-        add("Foo");
-        add("test");
-        add("folDER");
-        add("Foo");
-        add("test");
-        add("folDER");
-        add("Foo");
-        add("test");
-        add("folDER");
-        add("Foo");
-        add("test");
-        add("folDER");
-      }
-    };
-    foldersAdapter = new HexAdapter(folders);
-    foldersView.setAdapter(foldersAdapter);
+    eventsPort = obtainEventsPort();
+    foldersPresenter = new FoldersPresenterImpl(this, eventsPort);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    foldersPresenter.onResume();
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,5 +90,27 @@ public class Folders extends AppCompatActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override public void setFolders(final List<String> theFolders) {
+    foldersAdapter = new HexAdapter(theFolders, new CustomItemClickListener() {
+      @Override public void onItemClick(View view, int position) {
+        Toast.makeText(view.getContext(), theFolders.get(position), Toast.LENGTH_SHORT).show();
+      }
+    });
+    foldersRecyclerView.setAdapter(foldersAdapter);
+  }
+
+  private int radius(int diameter) {
+    return diameter / 2;
+  }
+
+  private float adjacent(float radius) {
+    return (float) (Math.sqrt(3) * radius / 2);
+  }
+
+  private EventsPort obtainEventsPort() {
+    BaseApp app = (BaseApp) getApplication();
+    return app.provideEventsPort();
   }
 }

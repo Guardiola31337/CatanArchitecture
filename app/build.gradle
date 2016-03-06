@@ -47,7 +47,9 @@ dependencies {
   compile fileTree(dir: '../libs', include: ['*.jar'])
   compile 'com.android.support:appcompat-v7:23.1.1'
   compile "com.android.support:recyclerview-v7:23.1.1"
-  compile 'com.pguardiola:hexgrid:0.0.2'
+  compile 'com.pguardiola:hexgrid:0.0.3'
+  compile project(':hexagon')
+  compile project(':adapters')
 
   // Testing-only dependencies
   androidTestCompile 'com.android.support.test:runner:0.4.1'
