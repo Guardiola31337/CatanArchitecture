@@ -23,7 +23,7 @@ import com.pguardiola.catanarchitecture.events.InMemoryEventsAdapter;
 import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.FoldersModule;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersCommand;
-import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersResponse;
+import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersFinished;
 import com.pguardiola.catanarchitecture.storage.StoragePort;
 import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.MockWebServer;
@@ -62,8 +62,8 @@ public class DropboxStorageTest {
     StoragePort storagePort = new DropboxStorageAdapter(eventsPort, apiService);
     FoldersModule foldersModule = new FoldersModule(storagePort, eventsPort);
 
-    eventsPort.on(LoadFoldersResponse.class, new Callback<LoadFoldersResponse>() {
-      @Override public void call(LoadFoldersResponse event) {
+    eventsPort.on(LoadFoldersFinished.class, new Callback<LoadFoldersFinished>() {
+      @Override public void call(LoadFoldersFinished event) {
         assertEquals("Dropbox Foo", event.folders.get(0).obtainName());
         assertEquals("Dropbox test", event.folders.get(1).obtainName());
         assertEquals("Dropbox folDER", event.folders.get(2).obtainName());

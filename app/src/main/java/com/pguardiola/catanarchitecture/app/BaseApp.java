@@ -17,7 +17,7 @@
 package com.pguardiola.catanarchitecture.app;
 
 import android.app.Application;
-import com.pguardiola.catanarchitecture.app.folders.SDCardStorageAdapter;
+import com.pguardiola.catanarchitecture.app.storage.sdcard.SDCardStorageAdapter;
 import com.pguardiola.catanarchitecture.events.EventsPort;
 import com.pguardiola.catanarchitecture.events.OttoEventsAdapter;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.FoldersModule;

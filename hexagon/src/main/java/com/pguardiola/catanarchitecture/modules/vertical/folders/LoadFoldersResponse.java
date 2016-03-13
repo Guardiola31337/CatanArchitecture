@@ -27,7 +27,7 @@ public class LoadFoldersResponse implements Event {
   }
 
   @Override public String toString() {
-    return "Folders loaded event";
+    return "Load folders response event";
   }
 }
 

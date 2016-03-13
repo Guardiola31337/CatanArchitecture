@@ -17,10 +17,16 @@
 package com.pguardiola.catanarchitecture.modules.vertical.folders;
 
 import com.pguardiola.catanarchitecture.events.Event;
+import java.util.List;
 
-public class LoadFoldersCommand implements Event {
+public class LoadFoldersFinished implements Event {
+  public final List<Folder> folders;
+
+  public LoadFoldersFinished(List<Folder> folders) {
+    this.folders = folders;
+  }
+
   @Override public String toString() {
-    return "Load folders command event";
+    return "Load folders finished event";
   }
 }
-

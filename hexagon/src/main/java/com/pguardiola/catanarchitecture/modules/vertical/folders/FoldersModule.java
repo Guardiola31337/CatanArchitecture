@@ -16,8 +16,8 @@
 
 package com.pguardiola.catanarchitecture.modules.vertical.folders;
 
-import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.events.EventsPort;
+import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.storage.StoragePort;
 
 public class FoldersModule implements Runnable {
@@ -41,6 +41,7 @@ public class FoldersModule implements Runnable {
         for (Folder folder : event.folders) {
           System.out.println(folder.obtainName() + "\n");
         }
+        eventsPort.broadcast(new LoadFoldersFinished(event.folders));
       }
     });
   }

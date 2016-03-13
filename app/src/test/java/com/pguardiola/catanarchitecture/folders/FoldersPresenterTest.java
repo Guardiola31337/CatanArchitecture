@@ -24,7 +24,7 @@ import com.pguardiola.catanarchitecture.events.InMemoryEventsAdapter;
 import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.Folder;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersCommand;
-import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersResponse;
+import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersFinished;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -42,8 +42,8 @@ public class FoldersPresenterTest {
 
     presenter.onResume();
 
-    verify(eventsPort).on(Matchers.<Class<LoadFoldersResponse>>any(),
-        Matchers.<Callback<LoadFoldersResponse>>any());
+    verify(eventsPort).on(Matchers.<Class<LoadFoldersFinished>>any(),
+        Matchers.<Callback<LoadFoldersFinished>>any());
   }
 
   @Test public void whenOnResumedLoadFoldersCommandIsBroadcast() throws Exception {
@@ -66,7 +66,7 @@ public class FoldersPresenterTest {
     folders.add(new Folder("Foo", 5));
     folders.add(new Folder("test", 27));
     folders.add(new Folder("folDER", 4));
-    eventsPort.broadcast(new LoadFoldersResponse(folders));
+    eventsPort.broadcast(new LoadFoldersFinished(folders));
 
     List<String> viewFolders = new ArrayList<>();
     viewFolders.add("Foo");

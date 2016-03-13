@@ -20,7 +20,7 @@ import com.pguardiola.catanarchitecture.events.EventsPort;
 import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.Folder;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersCommand;
-import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersResponse;
+import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersFinished;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +37,14 @@ public class FoldersPresenterImpl implements FoldersPresenter {
   }
 
   @Override public void onResume() {
-    eventsPort.on(LoadFoldersResponse.class, onFoldersReceived);
+    eventsPort.on(LoadFoldersFinished.class, onFoldersReceived);
     eventsPort.broadcast(new LoadFoldersCommand());
   }
 
-  private Callback<LoadFoldersResponse> initializeOnFinishedListener(
+  private Callback<LoadFoldersFinished> initializeOnFinishedListener(
       final FoldersView foldersView) {
-    return new Callback<LoadFoldersResponse>() {
-      @Override public void call(LoadFoldersResponse event) {
+    return new Callback<LoadFoldersFinished>() {
+      @Override public void call(LoadFoldersFinished event) {
         final List<String> folders = new ArrayList<>();
         for (Folder folder : event.folders) {
           folders.add(folder.obtainName());

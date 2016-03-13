@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pguardiola.catanarchitecture.app.folders;
+package com.pguardiola.catanarchitecture.app.storage.sdcard;
 
 import android.os.Environment;
 import com.pguardiola.catanarchitecture.events.EventsPort;

@@ -22,6 +22,7 @@ import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.Folder;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.FoldersModule;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersCommand;
+import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersFinished;
 import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersResponse;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,8 +44,8 @@ public class InMemoryStorageTest {
     StoragePort storagePort = new InMemoryStorageAdapter(eventsPort, folders);
     FoldersModule foldersModule = new FoldersModule(storagePort, eventsPort);
 
-    eventsPort.on(LoadFoldersResponse.class, new Callback<LoadFoldersResponse>() {
-      @Override public void call(LoadFoldersResponse event) {
+    eventsPort.on(LoadFoldersFinished.class, new Callback<LoadFoldersFinished>() {
+      @Override public void call(LoadFoldersFinished event) {
         assertEquals("Foo", event.folders.get(0).obtainName());
         assertEquals("test", event.folders.get(1).obtainName());
         assertEquals("folDER", event.folders.get(2).obtainName());
@@ -55,7 +56,7 @@ public class InMemoryStorageTest {
     eventsPort.broadcast(new LoadFoldersCommand());
   }
 
-  @Test public void foldersLoadedEventHasBeenFired() throws Exception {
+  @Test public void foldersLoadedResponseEventHasBeenFired() throws Exception {
     InMemoryEventsAdapter eventsPort = new InMemoryEventsAdapter();
     StoragePort storagePort =
         new InMemoryStorageAdapter(eventsPort, Collections.<Folder>emptyList());
@@ -65,5 +66,17 @@ public class InMemoryStorageTest {
     eventsPort.broadcast(new LoadFoldersCommand());
 
     assertTrue(eventsPort.hasBeenFired(LoadFoldersResponse.class));
+  }
+
+  @Test public void loadFoldersFinishedEventHasBeenFired() throws Exception {
+    InMemoryEventsAdapter eventsPort = new InMemoryEventsAdapter();
+    StoragePort storagePort =
+        new InMemoryStorageAdapter(eventsPort, Collections.<Folder>emptyList());
+    FoldersModule foldersModule = new FoldersModule(storagePort, eventsPort);
+
+    foldersModule.run();
+    eventsPort.broadcast(new LoadFoldersCommand());
+
+    assertTrue(eventsPort.hasBeenFired(LoadFoldersFinished.class));
   }
 }
