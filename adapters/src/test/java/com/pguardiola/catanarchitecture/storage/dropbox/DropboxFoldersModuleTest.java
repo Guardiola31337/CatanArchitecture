@@ -34,7 +34,7 @@ import retrofit.converter.GsonConverter;
 
 import static org.junit.Assert.assertEquals;
 
-public class DropboxStorageTest {
+public class DropboxFoldersModuleTest {
 
   @Test public void mockWebServerWorking() throws Exception {
     MockWebServer server = new MockWebServer();

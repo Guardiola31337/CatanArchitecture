@@ -32,7 +32,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class InMemoryStorageTest {
+public class InMemoryFoldersModuleTest {
 
   @Test public void storageWithSomeFolders() throws Exception {
     List<Folder> folders = new ArrayList<Folder>();
