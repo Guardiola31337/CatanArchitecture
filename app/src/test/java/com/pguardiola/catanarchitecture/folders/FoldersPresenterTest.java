@@ -40,7 +40,7 @@ public class FoldersPresenterTest {
     EventsPort eventsPort = mock(EventsPort.class);
     FoldersPresenter presenter = new FoldersPresenterImpl(null, eventsPort);
 
-    presenter.onResume();
+    presenter.update();
 
     verify(eventsPort).on(Matchers.<Class<LoadFoldersFinished>>any(),
         Matchers.<Callback<LoadFoldersFinished>>any());
@@ -50,7 +50,7 @@ public class FoldersPresenterTest {
     EventsPort eventsPort = mock(EventsPort.class);
     FoldersPresenter presenter = new FoldersPresenterImpl(null, eventsPort);
 
-    presenter.onResume();
+    presenter.update();
 
     verify(eventsPort).broadcast(any(LoadFoldersCommand.class));
   }
@@ -60,7 +60,7 @@ public class FoldersPresenterTest {
     FoldersView foldersView = mock(FoldersView.class);
     FoldersPresenter presenter = new FoldersPresenterImpl(foldersView, eventsPort);
 
-    presenter.onResume();
+    presenter.update();
 
     List<Folder> folders = new ArrayList<>();
     folders.add(new Folder("Foo", 5));

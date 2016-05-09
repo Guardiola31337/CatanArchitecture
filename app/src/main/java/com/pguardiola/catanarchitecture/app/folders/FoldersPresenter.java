@@ -17,5 +17,5 @@
 package com.pguardiola.catanarchitecture.app.folders;
 
 public interface FoldersPresenter {
-  void onResume();
+  void update();
 }

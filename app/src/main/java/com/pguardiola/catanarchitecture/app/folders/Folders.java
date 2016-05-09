@@ -74,7 +74,7 @@ public class Folders extends AppCompatActivity implements FoldersView {
   @Override
   protected void onResume() {
     super.onResume();
-    foldersPresenter.onResume();
+    foldersPresenter.update();
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {

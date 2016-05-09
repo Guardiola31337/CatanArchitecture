@@ -26,17 +26,15 @@ import java.util.List;
 
 public class FoldersPresenterImpl implements FoldersPresenter {
 
-  private final FoldersView foldersView;
   private final EventsPort eventsPort;
   private final Callback onFoldersReceived;
 
   public FoldersPresenterImpl(final FoldersView foldersView, EventsPort eventsPort) {
-    this.foldersView = foldersView;
     this.eventsPort = eventsPort;
     onFoldersReceived = initializeOnFinishedListener(foldersView);
   }
 
-  @Override public void onResume() {
+  @Override public void update() {
     eventsPort.on(LoadFoldersFinished.class, onFoldersReceived);
     eventsPort.broadcast(new LoadFoldersCommand());
   }
