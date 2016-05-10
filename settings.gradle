@@ -1,3 +1,4 @@
 include ':app'
-include 'AndroidFree'
+include ':hexagon'
+include ':adapters'
 

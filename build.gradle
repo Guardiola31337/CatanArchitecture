@@ -5,7 +5,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:1.2.3'
+    classpath 'com.android.tools.build:gradle:1.5.0'
 
     // NOTE: Do not place your application dependencies here; they belong
     // in the individual module build.gradle files
@@ -15,5 +15,20 @@ buildscript {
 allprojects {
   repositories {
     jcenter()
+  }
+
+  apply plugin: 'checkstyle'
+
+  checkstyle {
+    toolVersion = "6.7"
+    configFile = '../config/checkstyle/checkstyle.xml' as File
+  }
+
+  task checkstyle(type: Checkstyle) {
+    configFile file('../config/checkstyle/checkstyle.xml')
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files()
   }
 }
