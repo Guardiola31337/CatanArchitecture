@@ -68,7 +68,7 @@ public class Folders extends AppCompatActivity implements FoldersView {
     foldersRecyclerView.setLayoutManager(layoutManager);
 
     eventsPort = obtainEventsPort();
-    foldersPresenter = new FoldersPresenterImpl(this, eventsPort);
+    foldersPresenter = new FoldersPresenter(this, eventsPort);
   }
 
   @Override

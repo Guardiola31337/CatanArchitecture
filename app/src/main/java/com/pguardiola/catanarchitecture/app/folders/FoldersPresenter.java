@@ -16,6 +16,39 @@
 
 package com.pguardiola.catanarchitecture.app.folders;
 
-public interface FoldersPresenter {
-  void update();
+import com.pguardiola.catanarchitecture.events.EventsPort;
+import com.pguardiola.catanarchitecture.modules.horizontal.commons.Callback;
+import com.pguardiola.catanarchitecture.modules.vertical.folders.Folder;
+import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersCommand;
+import com.pguardiola.catanarchitecture.modules.vertical.folders.LoadFoldersFinished;
+import java.util.ArrayList;
+import java.util.List;
+
+public class FoldersPresenter {
+
+  private final EventsPort eventsPort;
+  private final Callback onFoldersReceived;
+
+  public FoldersPresenter(final FoldersView foldersView, EventsPort eventsPort) {
+    this.eventsPort = eventsPort;
+    onFoldersReceived = initializeOnFinishedListener(foldersView);
+  }
+
+  public void update() {
+    eventsPort.on(LoadFoldersFinished.class, onFoldersReceived);
+    eventsPort.broadcast(new LoadFoldersCommand());
+  }
+
+  private Callback<LoadFoldersFinished> initializeOnFinishedListener(
+      final FoldersView foldersView) {
+    return new Callback<LoadFoldersFinished>() {
+      @Override public void call(LoadFoldersFinished event) {
+        final List<String> folders = new ArrayList<>();
+        for (Folder folder : event.folders) {
+          folders.add(folder.obtainName());
+        }
+        foldersView.setFolders(folders);
+      }
+    };
+  }
 }

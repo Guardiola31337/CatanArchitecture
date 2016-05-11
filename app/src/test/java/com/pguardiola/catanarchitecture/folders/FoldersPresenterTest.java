@@ -17,7 +17,6 @@
 package com.pguardiola.catanarchitecture.folders;
 
 import com.pguardiola.catanarchitecture.app.folders.FoldersPresenter;
-import com.pguardiola.catanarchitecture.app.folders.FoldersPresenterImpl;
 import com.pguardiola.catanarchitecture.app.folders.FoldersView;
 import com.pguardiola.catanarchitecture.events.EventsPort;
 import com.pguardiola.catanarchitecture.events.InMemoryEventsAdapter;
@@ -38,7 +37,7 @@ import static org.mockito.Mockito.verify;
 public class FoldersPresenterTest {
   @Test public void whenOnResumedSetupOnFoldersReceived() throws Exception {
     EventsPort eventsPort = mock(EventsPort.class);
-    FoldersPresenter presenter = new FoldersPresenterImpl(null, eventsPort);
+    FoldersPresenter presenter = new FoldersPresenter(null, eventsPort);
 
     presenter.update();
 
@@ -48,7 +47,7 @@ public class FoldersPresenterTest {
 
   @Test public void whenOnResumedLoadFoldersCommandIsBroadcast() throws Exception {
     EventsPort eventsPort = mock(EventsPort.class);
-    FoldersPresenter presenter = new FoldersPresenterImpl(null, eventsPort);
+    FoldersPresenter presenter = new FoldersPresenter(null, eventsPort);
 
     presenter.update();
 
@@ -58,7 +57,7 @@ public class FoldersPresenterTest {
   @Test public void whenOnResumedSetFoldersIsCalled() throws Exception {
     EventsPort eventsPort = new InMemoryEventsAdapter();
     FoldersView foldersView = mock(FoldersView.class);
-    FoldersPresenter presenter = new FoldersPresenterImpl(foldersView, eventsPort);
+    FoldersPresenter presenter = new FoldersPresenter(foldersView, eventsPort);
 
     presenter.update();
 
