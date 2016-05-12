@@ -3,6 +3,7 @@ CatanArchitecture
 [![Build Status](https://travis-ci.org/Guardiola31337/CatanArchitecture.svg?branch=master)](https://travis-ci.org/Guardiola31337/CatanArchitecture)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Platform](https://img.shields.io/badge/platform-android-green.svg)](http://developer.android.com/index.html)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-CatanArchitecture-brightgreen.svg?style=flat)](http://android-arsenal.com/details/3/3575)
 
 ![Catan Architecture][1]
 
